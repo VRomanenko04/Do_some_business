@@ -1,0 +1,38 @@
+.main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+.wrapper {
+    margin: 10px 0px;
+    padding: 10px 15px;
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 900px;
+}
+
+.up__container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.down__container {
+    display: flex;
+    flex-direction: column;
+}
+
+.small_cont {
+    margin-left: 20px;
+}
+
+.photo {
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+}
