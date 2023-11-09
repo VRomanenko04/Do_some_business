@@ -28,7 +28,7 @@ const NavBar = () => {
                     <div key={link.label}>
                         <Link className={`${styles.link} ${path === link.href ? styles.active : ''}`} href={link.href}>
                             {link.icon}
-                            {link.label.toLowerCase()}
+                            <p>{link.label.toLowerCase()}</p>
                         </Link>
                     </div>
                 ))}
