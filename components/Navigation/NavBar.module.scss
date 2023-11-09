@@ -1,0 +1,31 @@
+.menu__position {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #505050;
+}
+
+.menu__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: #fff;
+    font-size: 14px;
+}
+
+.game__link {
+    background-color: rgb(22, 142, 247);
+    padding: 15px;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 20px;
+    font-size: 30px;
+}

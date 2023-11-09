@@ -2,18 +2,17 @@ import NavBar from '@/components/Navigation/NavBar';
 import React from 'react'
 
 
-const CabinetPage = () => {
-
+const TopPage = () => {
     return (
         <>
             <header>
                 <NavBar />
             </header>
             <main>
-                <div>Cabinet Page</div>
+                <div>Top Page</div>
             </main>
         </>
     )
 }
 
-export default CabinetPage;
+export default TopPage;

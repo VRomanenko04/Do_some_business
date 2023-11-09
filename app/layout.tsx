@@ -1,4 +1,4 @@
-import '../styles/global.scss'
+import '../styles/global.scss';
 
 export const metadata = {
   title: 'Do some business',
@@ -12,7 +12,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+      </body>
     </html>
   )
 }
