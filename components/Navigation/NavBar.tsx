@@ -1,4 +1,6 @@
+'use client'
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import React from 'react';
 import styles from './NavBar.module.scss';
 
@@ -17,12 +19,14 @@ const links = [
 ]
 
 const NavBar = () => {
+    const path = usePathname();
+
     return (
         <div className={styles.menu__position}>
             <nav className={styles.menu__container}>
                 {links.map((link) => (
                     <div key={link.label}>
-                        <Link className={styles.link} href={link.href}>
+                        <Link className={`${styles.link} ${path === link.href ? styles.active : ''}`} href={link.href}>
                             {link.icon}
                             {link.label.toLowerCase()}
                         </Link>

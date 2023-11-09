@@ -9,7 +9,7 @@
 .menu__container {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .link {
@@ -21,11 +21,15 @@
     font-size: 14px;
 }
 
+.active {
+    color: rgba(255, 250, 160);
+}
+
 .game__link {
     background-color: rgb(22, 142, 247);
-    padding: 15px;
+    padding: 18px;
     border-radius: 50%;
     position: absolute;
-    bottom: 20px;
+    bottom: 15px;
     font-size: 30px;
 }
