@@ -1,4 +1,5 @@
 import '../styles/global.scss';
+import { Providers } from './globalRedux/provider';
 
 export const metadata = {
   title: 'Do some business',
@@ -13,7 +14,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   )
