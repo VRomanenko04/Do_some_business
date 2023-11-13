@@ -24,8 +24,8 @@ const NavBar = () => {
     return (
         <div className={styles.menu__position}>
             <nav className={styles.menu__container}>
-                {links.map((link, index) => (
-                    <div key={index}>
+                {links.map((link) => (
+                    <div key={link.href}>
                         <Link className={`${styles.link} ${path === link.href ? styles.active : ''}`} href={link.href}>
                             {link.icon}
                             <p>{link.label.toLowerCase()}</p>
