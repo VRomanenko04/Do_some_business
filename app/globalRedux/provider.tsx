@@ -4,7 +4,7 @@ import { store } from "./store";
 import { useEffect } from "react";
 import { initializeUser } from "./Features/userAuth.slice";
 
-export function Providers({ children }: any) {
+export function Providers({ children }: {children : React.ReactNode}) {
 
     useEffect(() => {
         const initializeUserData = async () => {
