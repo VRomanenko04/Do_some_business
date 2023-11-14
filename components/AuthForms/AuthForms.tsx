@@ -16,8 +16,8 @@ const AuthForms = () => {
         <section className={styles.container}>
             <div onClick={handleChangeTurn} className={styles.turn}>
                 <div className={`${styles.turn__block} ${turn ? styles.turn__on : styles.turn__off}`}></div>
-                <p className={styles.turn_signin}>Sign up</p>
-                <p className={styles.turn_signup}>Sign in</p>
+                <p className={styles.turn_signin}>Sign in</p>
+                <p className={styles.turn_signup}>Sign up</p>
             </div>
             {turn ? (
                 <div className={styles.anim_container}>
