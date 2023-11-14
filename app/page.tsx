@@ -1,14 +1,15 @@
-import LoginForm from "@/components/LoginForm/LoginForm";
-import RegisterForm from "@/components/RegisterForm/RegisterForm";
+import AuthForms from "@/components/AuthForms/AuthForms";
 import Link from "next/link";
+import styles from '@/styles/homepage.module.scss';
 
 export default function PrimaryPage() {
   return (
-    <>
-      <h4>Home page</h4>
-      <RegisterForm />
-      <LoginForm />
-      <Link href='/cabinet'>Cabinet</Link>
-    </>
+    <main className={styles.main}>
+      <section className={styles.header}>
+        <h1>Home page</h1>
+        <Link className={styles.link} href='/cabinet'>Cabinet</Link>  
+      </section>
+      <AuthForms />
+    </main>
   )
 }

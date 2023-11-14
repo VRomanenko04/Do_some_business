@@ -1,7 +1,6 @@
 import { firebaseAuth } from "@/app/firebase";
 import { IUser } from "@/app/globalRedux/Features/userAuth.slice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
-import type { FirebaseError } from "firebase/app";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 
 export const UserRegister = async (email: string, password: string, setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">) => {

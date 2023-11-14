@@ -1,0 +1,54 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.turn {
+    margin-top: 20px;
+    position: relative;
+    height: 30px;
+    width: 100px;
+    background-color: aliceblue;
+    border: 1px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.turn__block {
+    position: absolute;
+    height: 30px;
+    width: 50px;
+    border-radius: 8px;
+    background-color: rgb(134, 125, 255);
+}
+
+.turn__on {
+    transform: translateX(0px);
+    transition: all 0.3s ease-in-out;
+}
+
+.turn__off {
+    transform: translateX(50px);
+    transition: all 0.3s ease-in-out;
+}
+
+.turn_signin {
+    position: absolute;
+    font-size: 14px;
+    top: 5px;
+    left: 3px;
+}
+
+.turn_signup {
+    position: absolute;
+    font-size: 14px;
+    top: 5px;
+    right: 3px;
+}
+
+.anim_container {
+    border: 1px solid #000;
+    margin-top: 10px;
+    border-radius: 10px;
+}

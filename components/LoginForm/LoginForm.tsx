@@ -2,6 +2,7 @@
 import { useActions } from '@/hooks/useAction';
 import { UserLogin } from '@/services/UserAuth';
 import React, { useState } from 'react'
+import styles from './LoginForm.module.scss';
 
 
 const LoginForm = () => {
@@ -32,10 +33,10 @@ const LoginForm = () => {
     }
 
     return (
-        <>
+        <div className={styles.form_container}>  
             <h4>Sing in</h4>
-            <form onSubmit={handleSubmitForm}>
-                <div>
+            <form className={styles.form} onSubmit={handleSubmitForm}>
+                <div className={styles.input_container}>
                     <label>E-mail:</label>
                     <input 
                         type="email" 
@@ -46,7 +47,7 @@ const LoginForm = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <div>
+                <div className={styles.input_container}>
                     <label>Password:</label>
                     <input 
                         type="password" 
@@ -57,9 +58,9 @@ const LoginForm = () => {
                         onChange={handleChange}
                     />
                 </div>
-                <button type='submit'>Submit</button>
+                <button className={styles.submit__btn} type='submit'>SUBMIT</button>
             </form>
-        </>
+        </div>
     )
 }
 
