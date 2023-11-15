@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgb(84, 84, 84);
+    padding: 30px;
+
+    h1 {
+        color: #fff
+    }
+
+    .link {
+        text-decoration: none;
+        color: #fff;
+        cursor: pointer;
+    }
+}
