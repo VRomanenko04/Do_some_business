@@ -6,13 +6,16 @@ import { ref, set } from "firebase/database";
 
 export const UserRegister = async (email: string, password: string, setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">) => {
     try {
+        // Регистрация user
         const { user } = await createUserWithEmailAndPassword(firebaseAuth, email, password);
 
+        // Оправка данных в БД
         const userRef = ref(firebaseDatabase, 'users/' + user.uid);
         const userData = {
             email: email,
         }
         await set(userRef, userData).then(() => {
+            // Отправка данных в redux store
             setUser({
                 email: user.email,
                 uid: user.uid,
@@ -26,8 +29,10 @@ export const UserRegister = async (email: string, password: string, setUser: Act
 
 export const UserLogin = async (email: string, password: string, setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">) => {
     try {
+        // Вход в аккаунт 
         const { user } = await signInWithEmailAndPassword(firebaseAuth, email, password);
         
+        // Отправка данных в redux store
         setUser({
             email: user.email,
             uid: user.uid,
