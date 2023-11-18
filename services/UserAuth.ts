@@ -58,7 +58,7 @@ export const UserLogin = async (
 
         if (snapshot.exists()) {
             const userData = snapshot.val();
-            console.log(userData)
+
             // Отправка данных из БД в redux store
             setData({
                 email: userData.email,
