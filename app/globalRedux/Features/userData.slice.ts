@@ -15,16 +15,10 @@ const userDataSlice = createSlice({
     initialState,
     reducers: {
         setData(state, action: PayloadAction<IUserData>) {
-            const currentState = state;
-
-            const stateUpdate = {
-                eamil: state.email = action.payload.email ?? currentState.email,
-                username: state.username = action.payload.username ?? currentState.username
-            };
-
             const newState = {
-                ...currentState,
-                ...stateUpdate
+                ...state,
+                email: action.payload.email ?? state.email,
+                username: action.payload.username ?? state.username
             };
 
             const userDataString = JSON.stringify(newState);

@@ -11,7 +11,7 @@ const LoginForm = () => {
         password: '',
     });
 
-    const { setUser } = useActions();
+    const { setUser, setData } = useActions();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -24,7 +24,7 @@ const LoginForm = () => {
     const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        UserLogin(loginForm.email, loginForm.password, setUser);
+        UserLogin(loginForm.email, loginForm.password, setUser, setData);
 
         setLoginForm({
             email: '',

@@ -1,10 +1,18 @@
 import { firebaseAuth, firebaseDatabase } from "@/app/firebase";
 import { IUser } from "@/app/globalRedux/Features/userAuth.slice";
+import { IUserData } from "@/app/globalRedux/Features/userData.slice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { ref, set } from "firebase/database";
+import { get, ref, set } from "firebase/database";
 
-export const UserRegister = async (email: string, password: string, setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">) => {
+
+export const UserRegister = async (
+        email: string,
+        password: string, 
+        username: string, 
+        setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">,
+        setData: ActionCreatorWithPayload<IUserData, "userDB/setData">
+    ) => {
     try {
         // Регистрация user
         const { user } = await createUserWithEmailAndPassword(firebaseAuth, email, password);
@@ -13,6 +21,7 @@ export const UserRegister = async (email: string, password: string, setUser: Act
         const userRef = ref(firebaseDatabase, 'users/' + user.uid);
         const userData = {
             email: email,
+            username: username
         }
         await set(userRef, userData).then(() => {
             // Отправка данных в redux store
@@ -20,6 +29,11 @@ export const UserRegister = async (email: string, password: string, setUser: Act
                 email: user.email,
                 uid: user.uid,
             });
+
+            setData({
+                email: user.email,
+                username: username
+            })
         })
 
     } catch (error: any) {
@@ -27,12 +41,32 @@ export const UserRegister = async (email: string, password: string, setUser: Act
     }
 }
 
-export const UserLogin = async (email: string, password: string, setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">) => {
+
+export const UserLogin = async (
+        email: string, 
+        password: string, 
+        setUser: ActionCreatorWithPayload<IUser, "userAuth/setUser">,
+        setData: ActionCreatorWithPayload<IUserData, "userDB/setData">
+    ) => {
     try {
         // Вход в аккаунт 
         const { user } = await signInWithEmailAndPassword(firebaseAuth, email, password);
         
-        // Отправка данных в redux store
+        // Получение данных из БД
+        const userRef = ref(firebaseDatabase, 'users/' + user.uid);
+        const snapshot = await get(userRef);
+
+        if (snapshot.exists()) {
+            const userData = snapshot.val();
+            console.log(userData)
+            // Отправка данных из БД в redux store
+            setData({
+                email: userData.email,
+                username: userData.username
+            })
+        }
+
+        // Отправка данных логина в redux store
         setUser({
             email: user.email,
             uid: user.uid,

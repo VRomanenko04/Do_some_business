@@ -1,14 +1,16 @@
 'use client';
 
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { reducer as authReducer } from "./Features/userAuth.slice";
 import { reducer as dataReducer } from "./Features/userData.slice";
 
+const reducers = combineReducers({
+    userAuth: authReducer,
+    userData: dataReducer,
+})
+
 export const store = configureStore({
-    reducer: {
-        auth: authReducer,
-        userData: dataReducer
-    }
+    reducer: reducers
 })
 
 export type RootState = ReturnType<typeof store.getState>;

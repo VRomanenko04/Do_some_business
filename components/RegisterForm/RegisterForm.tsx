@@ -14,7 +14,7 @@ const RegisterForm = () => {
         confirmPassword: ''
     });
 
-    const { setUser } = useActions();
+    const { setUser, setData } = useActions();
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -27,7 +27,7 @@ const RegisterForm = () => {
     const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         if (isCorrectPass) {
-            UserRegister(registerForm.email, registerForm.password, setUser);
+            UserRegister(registerForm.email, registerForm.password, registerForm.username, setUser, setData);
 
             setRegisterForm({
                 username: '',
