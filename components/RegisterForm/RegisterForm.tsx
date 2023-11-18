@@ -1,14 +1,17 @@
 'use client'
 import { useActions } from '@/hooks/useAction';
 import { UserRegister } from '@/services/UserAuth';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './RegisterForm.module.scss'
 
 
 const RegisterForm = () => {
+    const [isCorrectPass, setIsCorrestPass] = useState(true);
     const [registerForm, setRegisterForm] = useState({
+        username: '',
         email: '',
         password: '',
+        confirmPassword: ''
     });
 
     const { setUser } = useActions();
@@ -23,19 +26,39 @@ const RegisterForm = () => {
 
     const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
+        if (isCorrectPass) {
+            UserRegister(registerForm.email, registerForm.password, setUser);
 
-        UserRegister(registerForm.email, registerForm.password, setUser);
-
-        setRegisterForm({
-            email: '',
-            password: ''
-        });
+            setRegisterForm({
+                username: '',
+                email: '',
+                password: '',
+                confirmPassword: ''
+            });
+        } else {
+            alert('Something wrong')
+        }
     }
+
+    useEffect(() => {
+        setIsCorrestPass(registerForm.password === registerForm.confirmPassword)
+    }, [registerForm.password, registerForm.confirmPassword])
+
 
     return (
         <div className={styles.form_container}>
             <h4>Sign up</h4>
             <form className={styles.form} onSubmit={handleSubmitForm}>
+                <div className={styles.input_container}>
+                    <label>Username:</label>
+                    <input 
+                        type="text" 
+                        id='reg-username' 
+                        name='username'
+                        value={registerForm.username}
+                        onChange={handleChange}
+                    />
+                </div>
                 <div className={styles.input_container}>
                     <label>E-mail:</label>
                     <input 
@@ -57,6 +80,20 @@ const RegisterForm = () => {
                         value={registerForm.password}
                         onChange={handleChange}
                     />
+                </div>
+                <div className={styles.input_container}>
+                    <label>Confirm pass:</label>
+                    <input 
+                        type="password" 
+                        id='reg-confirmPass' 
+                        placeholder='********' 
+                        name='confirmPassword'
+                        value={registerForm.confirmPassword}
+                        onChange={handleChange}
+                    />
+                    {!isCorrectPass && (
+                        <p className={styles.error}>Incorrect pass</p>
+                    )}
                 </div>
                 <button className={styles.submit__btn} type='submit'>SUBMIT</button>
             </form>
