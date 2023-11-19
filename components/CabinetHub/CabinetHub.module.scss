@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+}
+
+.small_cont {
+    margin-left: 20px;
+}
+
+.photo {
+    border: 1px solid #000;
+    border-radius: 8px;
+    width: 60px;
+    height: 60px;
+}
