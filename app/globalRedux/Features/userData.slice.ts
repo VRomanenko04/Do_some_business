@@ -1,3 +1,4 @@
+import { fetchDbData } from '@/services/DBactions';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export interface IUserData {
@@ -21,12 +22,21 @@ const userDataSlice = createSlice({
                 username: action.payload.username ?? state.username
             };
 
-            const userDataString = JSON.stringify(newState);
-            sessionStorage.setItem('userData', userDataString);
+            sessionStorage.setItem('userData', JSON.stringify(newState));
 
             return newState;
         }
     }
 });
+
+export const userDataInitialize = () => {
+    const storedData = sessionStorage.getItem("userData");
+    if (storedData) {
+        const storedDataObj = JSON.parse(storedData)
+        return userDataSlice.actions.setData(storedDataObj)
+    } else {
+        return null
+    }
+}
 
 export const {reducer, actions} = userDataSlice;

@@ -4,6 +4,7 @@ import { IUserData } from "@/app/globalRedux/Features/userData.slice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { get, ref, set } from "firebase/database";
+import { fetchDbData } from "./DBactions";
 
 
 export const UserRegister = async (
@@ -53,13 +54,10 @@ export const UserLogin = async (
         const { user } = await signInWithEmailAndPassword(firebaseAuth, email, password);
         
         // Получение данных из БД
-        const userRef = ref(firebaseDatabase, 'users/' + user.uid);
-        const snapshot = await get(userRef);
-
-        if (snapshot.exists()) {
-            const userData = snapshot.val();
-
-            // Отправка данных из БД в redux store
+        const userData = await fetchDbData(user.uid);
+        
+        // Отправка данных из БД в redux store
+        if (userData) {
             setData({
                 email: userData.email,
                 username: userData.username
