@@ -13,6 +13,7 @@ const CabinetPage = () => {
                 <section className={styles.wrapper}>
                     <div className={styles.down__container}>
                         <p>Projects in work: ...</p>
+                        <p>Bank account: ...</p>
                         <p>Financial condition: ...</p>
                         <p>Place in iForbes: ...</p>
                     </div>
