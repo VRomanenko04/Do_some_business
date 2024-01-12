@@ -5,7 +5,7 @@ import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
 import { ref, set } from "firebase/database";
 import { fetchDbData } from "./DBactions";
-import router from "next/router";
+import { redirect } from "next/navigation";
 
 
 export const UserRegister = async (
@@ -75,10 +75,11 @@ export const UserLogin = async (
     }
 }
 
-
 export const isUserAuth = () => {
+    // Проверка регистрации 
     const isUserAuth = sessionStorage.getItem('user') ? true : false;
+
     if (!isUserAuth) {
-        router.push('/');
+        redirect('/');
     }
 }

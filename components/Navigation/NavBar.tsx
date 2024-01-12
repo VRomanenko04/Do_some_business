@@ -1,6 +1,6 @@
 'use client'
 import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
+import { redirect, usePathname, useRouter } from 'next/navigation';
 import React, { useEffect } from 'react';
 import styles from './NavBar.module.scss';
 import { useAuth } from '@/hooks/useAuth';
@@ -25,9 +25,7 @@ const NavBar = () => {
     const path = usePathname();
     const { isAuth } = useAuth();
 
-    useEffect(() => {
-        isUserAuth();
-    }, [])
+    isUserAuth();
 
     return (
         <div className={styles.menu__position}>
