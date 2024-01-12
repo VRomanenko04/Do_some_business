@@ -4,6 +4,7 @@ import { store } from "./store";
 import { useEffect } from "react";
 import { initializeUser } from "./Features/userAuth.slice";
 import { userDataInitialize } from "./Features/userData.slice";
+import { isUserAuth } from "@/services/UserAuth";
 
 export function Providers({ children }: {children : React.ReactNode}) {
 

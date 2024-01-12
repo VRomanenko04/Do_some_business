@@ -10,6 +10,7 @@ import { BsFillPersonFill } from 'react-icons/bs';
 import { FaShoppingBasket } from 'react-icons/fa';
 import { MdBusinessCenter } from 'react-icons/md';
 import { ImStatsDots } from 'react-icons/im';
+import { isUserAuth } from '@/services/UserAuth';
 
 
 const links = [
@@ -23,13 +24,10 @@ const links = [
 const NavBar = () => {
     const path = usePathname();
     const { isAuth } = useAuth();
-    const router = useRouter();
 
     useEffect(() => {
-        if(!isAuth) {
-            router.push('/');
-        }
-    }, [isAuth])
+        isUserAuth();
+    }, [])
 
     return (
         <div className={styles.menu__position}>

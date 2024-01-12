@@ -3,8 +3,9 @@ import { IUser } from "@/app/globalRedux/Features/userAuth.slice";
 import { IUserData } from "@/app/globalRedux/Features/userData.slice";
 import { ActionCreatorWithPayload } from "@reduxjs/toolkit";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { get, ref, set } from "firebase/database";
+import { ref, set } from "firebase/database";
 import { fetchDbData } from "./DBactions";
+import router from "next/router";
 
 
 export const UserRegister = async (
@@ -71,5 +72,13 @@ export const UserLogin = async (
         });
     } catch (error: any) {
         console.log(error)
+    }
+}
+
+
+export const isUserAuth = () => {
+    const isUserAuth = sessionStorage.getItem('user') ? true : false;
+    if (!isUserAuth) {
+        router.push('/');
     }
 }
